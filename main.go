@@ -9,7 +9,7 @@ import (
 
 func main() {
 
-	helloHandler := func(w http.ResponseWriter, req *http.Request) {
+	dumpHandler := func(w http.ResponseWriter, req *http.Request) {
 		body, err := httputil.DumpRequest(req, true)
 		if err != nil {
 			log.Fatal(err)
@@ -19,6 +19,6 @@ func main() {
 		io.WriteString(w, string(body))
 	}
 
-	http.HandleFunc("/", helloHandler)
+	http.HandleFunc("/", dumpHandler)
 	log.Fatal(http.ListenAndServe(":80", nil))
 }
